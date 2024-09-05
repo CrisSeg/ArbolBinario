@@ -46,13 +46,10 @@ namespace Complejidad_practica1
 		}
 		
 		public void inorden() {
-			//Imprimo por pantalla el hijo izquierdo
-			Console.Write(this.getHijoIzquierdo() + " ");
 			if (this.hijoIzquierdo != null) {
 				hijoIzquierdo.inorden();     //si el nodo tiene hijo izquierdo llamo a la funcion recursivamente
-			}	
-			
-			
+			}
+   
 			//Imprimo el dato raiz
 			Console.Write(this.dato + " ");
 			
@@ -60,7 +57,6 @@ namespace Complejidad_practica1
 			if(this.hijoDerecho != null){
 				hijoDerecho.inorden();
 			}
-			Console.Write(this.getHijoDerecho() + " ");
 		}
 		
 		public void preorden() {
@@ -83,15 +79,11 @@ namespace Complejidad_practica1
 			if (this.hijoIzquierdo != null) {
 				hijoIzquierdo.postorden();
 			}
-			//Imprimo el hijo izquierdo
-			Console.Write(this.hijoIzquierdo +" ");
 			
 			//Recorro los hijos derechos
 			if (this.hijoDerecho != null) {
 				hijoDerecho.postorden();
 			}
-			//Imprimo el hijo derecho
-			Console.Write(this.hijoDerecho +" ");
 			
 			//Imprimo la raiz
 			Console.Write(this.dato +" ");
@@ -114,5 +106,22 @@ namespace Complejidad_practica1
 				}
 			}
 			
+		}
+
+  		public ArbolBinario<int> nuevo(ArbolBinario<int> arbol)
+		{
+			//Creo un nuevo arbol
+			ArbolBinario<int> nuevoArbol = new ArbolBinario<int>(arbol.getDatoRaiz());
+			
+			//Verifico que tengan hijo izquierdo 
+			if (arbol.getHijoIzquierdo() != null) {
+				ArbolBinario<int> nuevoHijoIzq = new ArbolBinario<int>((int)arbol.getDatoRaiz() + (int)arbol.getHijoIzquierdo().getDatoRaiz());
+				nuevoArbol.agregarHijoIzquierdo(nuevoHijoIzq);
+			}
+			if (arbol.getHijoDerecho() != null) {
+				nuevoArbol.agregarHijoDerecho(arbol.getHijoDerecho());
+			}
+			
+			return nuevoArbol;
 		}
 }
